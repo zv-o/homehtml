@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Кофейня "Уютная Чашка"</title>
+    <title>taplink Ocoffella</title>
     <style>
         * {
             margin: 0;
@@ -13,116 +13,153 @@
         }
         
         body {
-            background: linear-gradient(135deg, #6f4e37 0%, #3e2723 100%);
-            color: #fff;
+            background: #f8f5f2;
+            color: #5a4a42;
             min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding: 20px;
+            overflow-x: hidden;
+            position: relative;
+        }
+        
+        /* Звездный фон в пастельных тонах */
+        .stars {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+        
+        .star {
+            position: absolute;
+            background-color: #8ac09f;
+            border-radius: 50%;
+            animation: twinkle 3s infinite;
+        }
+        
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 0.8; }
         }
         
         .container {
             max-width: 500px;
             width: 100%;
+            margin: 0 auto;
+            padding: 20px;
             text-align: center;
         }
         
         .profile {
-            margin-bottom: 30px;
+            margin: 30px 0 40px;
+            padding: 25px;
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.8);
+            box-shadow: 0 8px 32px rgba(177, 122, 80, 0.1);
         }
         
         .avatar {
             width: 120px;
             height: 120px;
             border-radius: 50%;
-            object-fit: cover;
-            border: 4px solid #d7ccc8;
-            margin-bottom: 15px;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, #8ac09f, #b17a50);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 40px;
+            color: white;
+            margin: 0 auto 20px;
+            border: 4px solid rgba(255, 255, 255, 0.8);
         }
         
         h1 {
             font-size: 28px;
-            margin-bottom: 10px;
-            color: #fff;
+            margin-bottom: 15px;
+            color: #5a4a42;
+            font-weight: 600;
         }
         
         .description {
             font-size: 16px;
-            line-height: 1.5;
-            margin-bottom: 30px;
-            color: #d7ccc8;
+            line-height: 1.6;
+            margin-bottom: 10px;
+            color: #7a6a62;
         }
         
+        /* Кнопки */
         .links {
             display: flex;
             flex-direction: column;
             gap: 15px;
-            margin-bottom: 30px;
+            margin-bottom: 40px;
         }
         
         .link-button {
-            background-color: rgba(255, 255, 255, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: 12px;
-            padding: 15px 20px;
-            color: white;
+            background: rgba(255, 255, 255, 0.8);
+            border: 1px solid rgba(177, 122, 80, 0.2);
+            border-radius: 16px;
+            padding: 18px 25px;
+            color: #5a4a42;
             text-decoration: none;
-            font-size: 16px;
+            font-size: 17px;
             font-weight: 500;
             transition: all 0.3s ease;
             display: flex;
             align-items: center;
-            justify-content: center;
+            justify-content: flex-start;
             backdrop-filter: blur(10px);
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(177, 122, 80, 0.1);
+        }
+        
+        .link-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(138, 192, 159, 0.1), transparent);
+            transition: left 0.5s;
+        }
+        
+        .link-button:hover::before {
+            left: 100%;
         }
         
         .link-button:hover {
-            background-color: rgba(255, 255, 255, 0.2);
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            background: rgba(255, 255, 255, 0.9);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(177, 122, 80, 0.15);
         }
         
         .link-button i {
-            margin-right: 10px;
-            font-size: 20px;
+            margin-right: 15px;
+            font-size: 22px;
+            width: 30px;
+            text-align: center;
+            color: #8ac09f;
         }
         
         .footer {
-            margin-top: 20px;
+            margin-top: 30px;
             font-size: 14px;
-            color: #bcaaa4;
-        }
-        
-        .social-icons {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            margin-top: 20px;
-        }
-        
-        .social-icon {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            background-color: rgba(255, 255, 255, 0.1);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            text-decoration: none;
-            transition: all 0.3s ease;
-        }
-        
-        .social-icon:hover {
-            background-color: rgba(255, 255, 255, 0.2);
-            transform: scale(1.1);
+            color: #9c8a80;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(10px);
+            border-radius: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.8);
         }
         
         /* Адаптивность */
         @media (max-width: 480px) {
             .container {
-                padding: 0 10px;
+                padding: 15px;
             }
             
             h1 {
@@ -130,78 +167,122 @@
             }
             
             .description {
-                font-size: 14px;
+                font-size: 15px;
+            }
+            
+            .link-button {
+                padding: 16px 20px;
+                font-size: 16px;
             }
         }
     </style>
 </head>
 <body>
+    <!-- Звездный фон -->
+    <div class="stars" id="stars"></div>
+    
     <div class="container">
         <div class="profile">
-            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120' viewBox='0 0 120 120'%3E%3Crect width='120' height='120' fill='%238d6e63'/%3E%3Cpath d='M60 30c8.284 0 15 6.716 15 15s-6.716 15-15 15-15-6.716-15-15 6.716-15 15-15zm0 30c16.542 0 30 13.458 30 30H30c0-16.542 13.458-30 30-30z' fill='%235d4037'/%3E%3C/svg%3E" alt="Кофейня Уютная Чашка" class="avatar">
+            <div class="avatar">colourlogo.png</div>
             <h1>Кофейня Ocoffella</h1>
-            <p class="description">Насладитесь лучшим кофе в кварталах. У нас только свежеобжаренные зерна и уютная атмосфера.</p>
+            <p class="description">Насладитеськофе итд. Свежие зерна тип того</p>
+            <p class="description">Место, где бла бла бла.</p>
         </div>
         
+        <!-- Кнопки -->
         <div class="links">
-            <a href="https://yandex.ru/maps/org/okoffella/241290830255/menu/?ll=37.445329%2C55.589203&tab=menu&z=17" class="link-button" id="menu-button">
-                <i>☕</i> Наше меню
+            <a href="#" class="link-button" id="menu-button">
+                <i>📖</i> Наше меню
             </a>
-            <a href="https://ya.cc/t/ae-v2pWc4oHy7R" class="link-button" id="delivery-button">
-                <i>⭐️</i> Оставить отзыв на Яндекс Карты
+            <a href="#" class="link-button" id="delivery-button">
+                <i>📣</i> Канал в телеграмм
             </a>
             <a href="#" class="link-button" id="reservation-button">
-                <i>📅</i> пусто
+                <i>⭐</i> кнопка 3
             </a>
             <a href="#" class="link-button" id="reviews-button">
-                <i>⭐</i> пусто
+                <i>⭐</i> кнопка 4
             </a>
             <a href="#" class="link-button" id="contacts-button">
                 <i>📍</i> Контакты и адрес
             </a>
         </div>
         
-        <div class="social-icons">
-            <a href="#" class="social-icon">📘</a>
-            <a href="#" class="social-icon">📷</a>
-            <a href="#" class="social-icon">🐦</a>
-        </div>
-        
         <div class="footer">
-            <p>2025 Кофейня Ocoffella</p>
+            <p>Ocoffella 2025</p>
+            <p>Открыты с 8:00 до 21:00</p>
+            <p>Cуббота и воскресенье с 09:00 до 21:00</p>
         </div>
     </div>
 
     <script>
+        // Создание звездного фона в пастельных тонах
+        function createStars() {
+            const starsContainer = document.getElementById('stars');
+            const starCount = 80;
+            
+            for (let i = 0; i < starCount; i++) {
+                const star = document.createElement('div');
+                star.classList.add('star');
+                
+                // Случайный размер звезды
+                const size = Math.random() * 2 + 1;
+                star.style.width = `${size}px`;
+                star.style.height = `${size}px`;
+                
+                // Случайная позиция
+                star.style.left = `${Math.random() * 100}%`;
+                star.style.top = `${Math.random() * 100}%`;
+                
+                // Случайная задержка анимации
+                star.style.animationDelay = `${Math.random() * 3}s`;
+                star.style.animationDuration = `${2 + Math.random() * 2}s`;
+                
+                // Случайный цвет из пастельной палитры
+                const colors = ['#8ac09f', '#b17a50', '#d4b8a0', '#a8d5ba'];
+                star.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                
+                starsContainer.appendChild(star);
+            }
+        }
+        
         // Обработчики для кнопок
-        document.getElementById('menu-button').addEventListener('click', function(e) {
-            e.preventDefault();
-            alert('Переход к меню кофейни');
-            window.location.href = 'https://ya.cc/t/ae-v2pWc4oHy7R';
-        });
+        function setupButtonHandlers() {
+            document.getElementById('menu-button').addEventListener('click', function(e) {
+                e.preventDefault();
+                alert('Переход к меню кофейни');
+                // В реальном приложении: window.location.href = 'ссылка_на_меню';
+            });
+            
+            document.getElementById('delivery-button').addEventListener('click', function(e) {
+                e.preventDefault();
+                alert('Переход к сервису доставки');
+                // В реальном приложении: window.location.href = 'ссылка_на_доставку';
+            });
+            
+            document.getElementById('reservation-button').addEventListener('click', function(e) {
+                e.preventDefault();
+                alert('Переход к бронированию столика');
+                // В реальном приложении: window.location.href = 'ссылка_на_бронирование';
+            });
+            
+            document.getElementById('reviews-button').addEventListener('click', function(e) {
+                e.preventDefault();
+                alert('Переход к отзывам');
+                // В реальном приложении: window.location.href = 'ссылка_на_отзывы';
+            });
+            
+            document.getElementById('contacts-button').addEventListener('click', function(e) {
+                e.preventDefault();
+                alert('Переход к контактам');
+                // В реальном приложении: window.location.href = 'ссылка_на_контакты';
+            });
+        }
         
-        document.getElementById('delivery-button').addEventListener('click', function(e) {
-            e.preventDefault();
-            alert('Оставить отзыв на Яндекс Карты');
-            window.location.href = 'https://ya.cc/t/ae-v2pWc4oHy7R';
-        });
-        
-        document.getElementById('reservation-button').addEventListener('click', function(e) {
-            e.preventDefault();
-            alert('Переход к бронированию столика');
-            // В реальном приложении здесь будет window.location.href = 'ссылка_на_бронирование';
-        });
-        
-        document.getElementById('reviews-button').addEventListener('click', function(e) {
-            e.preventDefault();
-            alert('Переход к отзывам');
-            // В реальном приложении здесь будет window.location.href = 'ссылка_на_отзывы';
-        });
-        
-        document.getElementById('contacts-button').addEventListener('click', function(e) {
-            e.preventDefault();
-            alert('Переход к контактам');
-            // В реальном приложении здесь будет window.location.href = 'ссылка_на_контакты';
+        // Инициализация
+        document.addEventListener('DOMContentLoaded', function() {
+            createStars();
+            setupButtonHandlers();
         });
     </script>
 </body>
