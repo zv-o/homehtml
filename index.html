@@ -213,7 +213,7 @@
     </div>
 
     <script>
-        // Создание звездного фона
+        // Создание звездного фона в пастельных тонах
         function createStars() {
             const starsContainer = document.getElementById('stars');
             const starCount = 80;
@@ -236,7 +236,12 @@
                 star.style.animationDuration = `${2 + Math.random() * 2}s`;
                 
                 // Случайный цвет из пастельной палитры
-                const colors = ['#6da584', '#9d6b45', '#a8927a', '#7bb595'];
+                const colors = [
+                    'var(--star-color-1)',
+                    'var(--star-color-2)', 
+                    'var(--star-color-3)',
+                    'var(--star-color-4)'
+                ];
                 star.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
                 
                 starsContainer.appendChild(star);
