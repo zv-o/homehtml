@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Осеннее меню - Ocoffella</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background-color: #f7f5f1;
+      font-family: system-ui, -apple-system, sans-serif;
+      line-height: 1.4;
+      color: #262626;
+      padding: 16px;
+      max-width: 500px;
+      margin: 0 auto;
+    }
+
+    .header {
+      background-color: #79b58e;
+      color: #ffffff;
+      text-align: center;
+      padding: 24px 16px;
+      border-radius: 12px;
+      margin-bottom: 24px;
+    }
+
+    .header h1 {
+      font-size: 24px;
+      font-weight: bold;
+      margin-bottom: 4px;
+    }
+
+    .header p {
+      font-size: 14px;
+      opacity: 0.95;
+    }
+
+    .category {
+      text-align: center;
+      color: #a0663f;
+      font-size: 20px;
+      font-weight: bold;
+      margin: 32px 0 20px 0;
+      padding-bottom: 8px;
+      border-bottom: 2px solid #a0663f;
+    }
+
+    .menu-item {
+      background: #ffffff;
+      margin-bottom: 16px;
+      padding: 16px;
+      border-radius: 8px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    }
+
+    .item-name {
+      font-weight: bold;
+      font-size: 16px;
+      margin-bottom: 8px;
+      color: #262626;
+    }
+
+    .item-price {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-weight: bold;
+      color: #a0663f;
+      font-size: 15px;
+    }
+
+    .price-option {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      flex: 1;
+    }
+
+    .volume {
+      font-size: 12px;
+      color: #535353;
+      font-weight: normal;
+      margin-top: 2px;
+    }
+
+    .price-divider {
+      color: #ddd;
+      margin: 0 8px;
+    }
+
+    .footer {
+      text-align: center;
+      font-size: 12px;
+      color: #535353;
+      margin-top: 32px;
+      padding-top: 16px;
+      border-top: 1px solid #ddd;
+    }
+
+    @media (max-width: 380px) {
+      body {
+        padding: 12px;
+      }
+      
+      .header {
+        padding: 20px 12px;
+      }
+      
+      .header h1 {
+        font-size: 22px;
+      }
+      
+      .category {
+        font-size: 18px;
+      }
+      
+      .menu-item {
+        padding: 14px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <h1>Авторское меню</h1>
+    <p>Осенняя коллекция напитков</p>
+  </div>
+
+  <div class="category">Кофе</div>
+
+  <div class="menu-item">
+    <div class="item-name">Тыквенно-цитрусовый латте</div>
+    <div class="item-price">
+      <div class="price-option">
+        <span>340 руб</span>
+        <span class="volume">350 мл</span>
+      </div>
+      <span class="price-divider">/</span>
+      <div class="price-option">
+        <span>390 руб</span>
+        <span class="volume">450 мл</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="menu-item">
+    <div class="item-name">Капучино ириска</div>
+    <div class="item-price">
+      <div class="price-option">
+        <span>330 руб</span>
+        <span class="volume">350 мл</span>
+      </div>
+      <span class="price-divider">/</span>
+      <div class="price-option">
+        <span>380 руб</span>
+        <span class="volume">450 мл</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="menu-item">
+    <div class="item-name">Мятный мокко</div>
+    <div class="item-price">
+      <div class="price-option">
+        <span>330 руб</span>
+        <span class="volume">350 мл</span>
+      </div>
+      <span class="price-divider">/</span>
+      <div class="price-option">
+        <span>380 руб</span>
+        <span class="volume">450 мл</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="menu-item">
+    <div class="item-name">Раф Кешью</div>
+    <div class="item-price">
+      <div class="price-option">
+        <span>340 руб</span>
+        <span class="volume">350 мл</span>
+      </div>
+      <span class="price-divider">/</span>
+      <div class="price-option">
+        <span>390 руб</span>
+        <span class="volume">450 мл</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="category">Не кофе</div>
+
+  <div class="menu-item">
+    <div class="item-name">Вишневый глинтвейн</div>
+    <div class="item-price">
+      <div class="price-option">
+        <span>320 руб</span>
+        <span class="volume">350 мл</span>
+      </div>
+      <span class="price-divider">/</span>
+      <div class="price-option">
+        <span>370 руб</span>
+        <span class="volume">450 мл</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="menu-item">
+    <div class="item-name">Какао имбирный пряник</div>
+    <div class="item-price">
+      <div class="price-option">
+        <span>320 руб</span>
+        <span class="volume">350 мл</span>
+      </div>
+      <span class="price-divider">/</span>
+      <div class="price-option">
+        <span>370 руб</span>
+        <span class="volume">450 мл</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="menu-item">
+    <div class="item-name">Чай апельсин-облепиха</div>
+    <div class="item-price">
+      <div class="price-option">
+        <span>250 руб</span>
+        <span class="volume">350 мл</span>
+      </div>
+      <span class="price-divider">/</span>
+      <div class="price-option">
+        <span>320 руб</span>
+        <span class="volume">450 мл</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="menu-item">
+    <div class="item-name">Матча белый шоколад с фисташкой</div>
+    <div class="item-price">
+      <div class="price-option">
+        <span>340 руб</span>
+        <span class="volume">350 мл</span>
+      </div>
+      <span class="price-divider">/</span>
+      <div class="price-option">
+        <span>390 руб</span>
+        <span class="volume">450 мл</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    2025 Кофейня "Ocoffella"
+  </div>
+</body>
+</html>
