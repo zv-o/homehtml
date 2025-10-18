@@ -55,18 +55,20 @@
             border-radius: 12px;
             border: 1px solid #b17a50;
             text-align: left;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
         
         .item-name {
             font-weight: bold;
             font-size: 16px;
-            margin-bottom: 10px;
             color: #e8e6e3;
+            flex: 1;
         }
         
         .item-price {
             display: flex;
-            justify-content: space-between;
             align-items: center;
             font-weight: bold;
             color: #8ac09f;
@@ -76,8 +78,7 @@
         .price-option {
             display: flex;
             flex-direction: column;
-            align-items: center;
-            flex: 1;
+            align-items: flex-end;
         }
         
         .volume {
@@ -240,4 +241,4 @@
         </div>
     </div>
 </body>
-</html> 
+</html>
