@@ -3,117 +3,215 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Осеннее меню - Ocoffella</title>
+    <title>Ocoffella • Осенняя коллекция</title>
     <style>
-        body {
+        * {
             margin: 0;
-            padding: 15px;
-            background: #1a1a1a;
-            color: #e8e6e3;
-            font-family: system-ui, -apple-system, sans-serif;
-            text-align: center;
+            padding: 0;
+            box-sizing: border-box;
         }
         
-        .container {
+        body {
+            background: #1a1a1a;
+            color: #e8e6e3;
+            font-family: 'Courier New', monospace;
+            min-height: 100vh;
+            padding: 20px;
+            line-height: 1.6;
+        }
+        
+        /* Анимация загрузки */
+        #loader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #1a1a1a;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+        }
+        
+        .boot-text {
+            color: #b17a50;
+            font-size: 16px;
+            margin-bottom: 15px;
+            opacity: 0;
+            animation: type 2s steps(40, end) forwards;
+        }
+        
+        .boot-text:nth-child(2) {
+            animation-delay: 1.5s;
+        }
+        
+        .boot-text:nth-child(3) {
+            animation-delay: 3s;
+        }
+        
+        .boot-text:nth-child(4) {
+            animation-delay: 4.5s;
+            color: #8ac09f;
+        }
+        
+        @keyframes type {
+            0% { opacity: 0; }
+            50% { opacity: 1; }
+            100% { opacity: 1; }
+        }
+        
+        .progress-bar {
+            width: 200px;
+            height: 2px;
+            background: #333;
+            margin-top: 30px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .progress-bar::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: #b17a50;
+            animation: loading 6s ease-in-out forwards;
+        }
+        
+        @keyframes loading {
+            0% { left: -100%; }
+            100% { left: 0; }
+        }
+        
+        /* Основной контент */
+        #content {
+            display: none;
             max-width: 400px;
             margin: 0 auto;
         }
         
-        .header, .menu-item, .footer {
-            background: #262626;
-            border-radius: 16px;
-            border: 1px solid #b17a50;
-            margin-bottom: 12px;
-            padding: 25px 20px;
-        }
-        
-        .menu-item {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            text-align: left;
-            padding: 16px;
-            border-radius: 12px;
-        }
-        
-        .footer {
-            margin-top: 25px;
-            padding: 15px;
+        .header {
+            margin-bottom: 40px;
+            padding-top: 20px;
         }
         
         h1 {
-            font-size: 24px;
+            font-size: 28px;
             margin-bottom: 8px;
+            color: #e8e6e3;
+            font-weight: normal;
+            letter-spacing: 1px;
         }
         
         .subtitle {
-            font-size: 15px;
+            font-size: 16px;
             color: #b8b2a8;
+            margin-bottom: 30px;
         }
         
         .category {
             color: #8ac09f;
-            font-size: 18px;
-            font-weight: bold;
-            margin: 25px 0 15px;
+            font-size: 20px;
+            margin: 40px 0 20px;
+        }
+        
+        .menu-item {
+            margin-bottom: 25px;
+            padding: 0;
+            opacity: 0;
+            animation: fadeInUp 0.8s ease forwards;
+        }
+        
+        .menu-item:nth-child(1) { animation-delay: 0.1s; }
+        .menu-item:nth-child(2) { animation-delay: 0.2s; }
+        .menu-item:nth-child(3) { animation-delay: 0.3s; }
+        .menu-item:nth-child(4) { animation-delay: 0.4s; }
+        .menu-item:nth-child(5) { animation-delay: 0.5s; }
+        .menu-item:nth-child(6) { animation-delay: 0.6s; }
+        .menu-item:nth-child(7) { animation-delay: 0.7s; }
+        .menu-item:nth-child(8) { animation-delay: 0.8s; }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
         
         .item-name {
+            font-size: 18px;
+            margin-bottom: 8px;
+            color: #e8e6e3;
             font-weight: bold;
-            font-size: 16px;
-            flex: 1;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.4;
         }
         
         .item-price {
             display: flex;
-            align-items: center;
-            font-weight: bold;
-            color: #8ac09f;
-            font-size: 15px;
+            gap: 15px;
+            font-size: 16px;
+            color: #b17a50;
         }
         
         .price-option {
             display: flex;
-            flex-direction: column;
-            align-items: flex-end;
+            gap: 5px;
+            align-items: baseline;
         }
         
         .volume {
-            font-size: 12px;
+            font-size: 14px;
             color: #b8b2a8;
-            font-weight: normal;
-            margin-top: 2px;
         }
         
-        .price-divider {
-            color: #b17a50;
-            margin: 0 8px;
+        .footer {
+            margin-top: 60px;
+            padding-top: 20px;
+            border-top: 1px solid #b17a50;
+            font-size: 14px;
+            color: #8a8478;
         }
         
-        .home-button {
-            background: #b17a50;
-            color: #1a1a1a;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 8px;
-            font-weight: bold;
-            cursor: pointer;
-            transition: background-color 0.3s;
-            text-decoration: none;
+        .home-link {
             display: inline-block;
-            margin-top: 10px;
+            margin-top: 30px;
+            color: #8ac09f;
+            text-decoration: none;
+            font-size: 16px;
+            padding: 8px 0;
+            border-bottom: 1px solid transparent;
+            transition: all 0.3s ease;
         }
         
-        .home-button:hover {
-            background: #d49a6a;
+        .home-link:hover {
+            border-bottom-color: #8ac09f;
         }
     </style>
 </head>
 <body>
-    <div class="container">
+    <!-- Анимация загрузки -->
+    <div id="loader">
+        <div class="boot-text">Ocoffella</div>
+        <div class="boot-text">Осенняя коллекция 2025</div>
+        <div class="boot-text">Загрузка меню...</div>
+        <div class="boot-text">Готово</div>
+        <div class="progress-bar"></div>
+    </div>
+    
+    <!-- Основной контент -->
+    <div id="content">
         <div class="header">
-            <h1>Авторское меню</h1>
-            <p class="subtitle">Осенняя коллекция напитков</p>
+            <h1>Ocoffella</h1>
+            <div class="subtitle">Осенняя коллекция напитков</div>
         </div>
 
         <div class="category">Кофе</div>
@@ -121,36 +219,56 @@
         <div class="menu-item">
             <div class="item-name">Тыквенно-цитрусовый латте</div>
             <div class="item-price">
-                <div class="price-option"><span>340 руб</span><span class="volume">350 мл</span></div>
-                <span class="price-divider">/</span>
-                <div class="price-option"><span>390 руб</span><span class="volume">450 мл</span></div>
+                <div class="price-option">
+                    <span>340</span>
+                    <span class="volume">350 мл</span>
+                </div>
+                <div class="price-option">
+                    <span>390</span>
+                    <span class="volume">450 мл</span>
+                </div>
             </div>
         </div>
 
         <div class="menu-item">
             <div class="item-name">Капучино ириска</div>
             <div class="item-price">
-                <div class="price-option"><span>340 руб</span><span class="volume">350 мл</span></div>
-                <span class="price-divider">/</span>
-                <div class="price-option"><span>390 руб</span><span class="volume">450 мл</span></div>
+                <div class="price-option">
+                    <span>340</span>
+                    <span class="volume">350 мл</span>
+                </div>
+                <div class="price-option">
+                    <span>390</span>
+                    <span class="volume">450 мл</span>
+                </div>
             </div>
         </div>
 
         <div class="menu-item">
             <div class="item-name">Мятный мокко</div>
             <div class="item-price">
-                <div class="price-option"><span>340 руб</span><span class="volume">350 мл</span></div>
-                <span class="price-divider">/</span>
-                <div class="price-option"><span>390 руб</span><span class="volume">450 мл</span></div>
+                <div class="price-option">
+                    <span>340</span>
+                    <span class="volume">350 мл</span>
+                </div>
+                <div class="price-option">
+                    <span>390</span>
+                    <span class="volume">450 мл</span>
+                </div>
             </div>
         </div>
 
         <div class="menu-item">
             <div class="item-name">Раф Кешью</div>
             <div class="item-price">
-                <div class="price-option"><span>340 руб</span><span class="volume">350 мл</span></div>
-                <span class="price-divider">/</span>
-                <div class="price-option"><span>390 руб</span><span class="volume">450 мл</span></div>
+                <div class="price-option">
+                    <span>340</span>
+                    <span class="volume">350 мл</span>
+                </div>
+                <div class="price-option">
+                    <span>390</span>
+                    <span class="volume">450 мл</span>
+                </div>
             </div>
         </div>
 
@@ -159,44 +277,73 @@
         <div class="menu-item">
             <div class="item-name">Вишневый глинтвейн</div>
             <div class="item-price">
-                <div class="price-option"><span>320 руб</span><span class="volume">350 мл</span></div>
-                <span class="price-divider">/</span>
-                <div class="price-option"><span>370 руб</span><span class="volume">450 мл</span></div>
+                <div class="price-option">
+                    <span>320</span>
+                    <span class="volume">350 мл</span>
+                </div>
+                <div class="price-option">
+                    <span>370</span>
+                    <span class="volume">450 мл</span>
+                </div>
             </div>
         </div>
 
         <div class="menu-item">
             <div class="item-name">Какао имбирный пряник</div>
             <div class="item-price">
-                <div class="price-option"><span>320 руб</span><span class="volume">350 мл</span></div>
-                <span class="price-divider">/</span>
-                <div class="price-option"><span>370 руб</span><span class="volume">450 мл</span></div>
+                <div class="price-option">
+                    <span>320</span>
+                    <span class="volume">350 мл</span>
+                </div>
+                <div class="price-option">
+                    <span>370</span>
+                    <span class="volume">450 мл</span>
+                </div>
             </div>
         </div>
 
         <div class="menu-item">
             <div class="item-name">Чай апельсин-облепиха</div>
             <div class="item-price">
-                <div class="price-option"><span>250 руб</span><span class="volume">350 мл</span></div>
-                <span class="price-divider">/</span>
-                <div class="price-option"><span>320 руб</span><span class="volume">450 мл</span></div>
+                <div class="price-option">
+                    <span>250</span>
+                    <span class="volume">350 мл</span>
+                </div>
+                <div class="price-option">
+                    <span>320</span>
+                    <span class="volume">450 мл</span>
+                </div>
             </div>
         </div>
 
         <div class="menu-item">
             <div class="item-name">Матча белый шоколад с фисташкой</div>
             <div class="item-price">
-                <div class="price-option"><span>340 руб</span><span class="volume">350 мл</span></div>
-                <span class="price-divider">/</span>
-                <div class="price-option"><span>390 руб</span><span class="volume">450 мл</span></div>
+                <div class="price-option">
+                    <span>340</span>
+                    <span class="volume">350 мл</span>
+                </div>
+                <div class="price-option">
+                    <span>390</span>
+                    <span class="volume">450 мл</span>
+                </div>
             </div>
         </div>
 
         <div class="footer">
-            <p>2025 Кофейня "Ocoffella"</p>
+            <div>2025 Кофейня "Ocoffella"</div>
+            <a href="#" class="home-link">Вернуться на главную</a>
         </div>
-
-        <a href="https://zv-o.github.io/homehtml/" class="home-button">Вернуться на главную</a>
     </div>
+
+    <script>
+        // Анимация загрузки
+        window.addEventListener('load', function() {
+            setTimeout(function() {
+                document.getElementById('loader').style.display = 'none';
+                document.getElementById('content').style.display = 'block';
+            }, 6000);
+        });
+    </script>
 </body>
 </html>
