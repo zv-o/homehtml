@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=yes">
+  <title>term</title>
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box}
+    html,body{width:100%;height:100%}
+    body{
+      font-family:'Courier New',monospace;
+      font-size:13px;
+      line-height:1.2;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+    }
+    #s{
+      width:75vw;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+    }
+    #m{
+      white-space:pre;
+      line-height:1;
+      opacity:1;
+      transition:opacity .8s;
+    }
+    #t{
+      display:none;
+      opacity:0;
+      transition:opacity .8s;
+    }
+    #c{
+      text-align:left;
+      white-space:pre-wrap;
+      word-break:break-all;
+    }
+    button{
+      background:none;
+      border:1px solid;
+      font:inherit;
+      padding:6px 10px;
+      margin-top:10px;
+      cursor:pointer;
+    }
+    button:active{background:#000;color:#fff}
+  </style>
+</head>
+<body>
+<div id="s">
+  <div id="m"></div>
+  <div id="t"><div id="c"></div></div>
+</div>
+<script>
+(function(){
+  var m=document.getElementById('m');
+  var t=document.getElementById('t');
+  var c=document.getElementById('c');
+  if(!m||!t||!c)return;
+
+  var A=[
+"                                                                                                    ",
+"                                                                                                    ",
+"                                          %%%%%%%%%%%%%%%                                           ",
+"                                    %%%%%%%%%%%%%%%%%%%%%%%%%%%%                                    ",
+"                                %%%%%%%                      %%%%%%                                 ",
+"                             %%%%%%                               %%%%%                             ",
+"                          %%%%%%                                     %%%%%                          ",
+"                        %%%%%                  %   % %                  %%%%                        ",
+"                      %%%%               %%%  %%% %%%  %%%   %%            %%%                      ",
+"                    %%%%%           %%% %%  %  %   %  %%% %  %% %%          %%%%                    ",
+"                   %%%      %%%%%  %    %%  %  %   %  %     %%  %%            %%%                   ",
+"                 %%%%      %    %% %%  % %%%           %%% %%  %% %%%          %%%%                 ",
+"                %%%%       %%    %% %%%                       %%%%%%%%           %%%                ",
+"               %%%          %%   %                              %% %%             %%%               ",
+"              %%%%            %%                                   %%              %%%              ",
+"             %%%                                                                       %%           ",
+"            %%%                              %%                                        %%%          ",
+"            %%%                              %%%                                       %%%%%        ",
+"           %%%%                              %%%                                      %% % %%       ",
+"           %%%                              %%%                                        %%%%%%       ",
+"          %%%%                             %%%                                        %  %          ",
+"          %%%%                             % %                                        %%%%%%%       ",
+"          %%%                               %%%                                      %%%%%%%%       ",
+"          % %                                %%%%%%%%%%%                        %%% %% %%           ",
+"          % %                                 %%%%%%%%%                         % %%%%%%%%%%        ",
+"          % %                     %%%%%%%%%%       %%%%%%%     %%               %%  %   %%%         ",
+"          %%%%                    %%%         %%%%%%%        %%%%%%%             %% %  %%  %%%      ",
+"          %%%%                      %%%%%%%%%%%%%%          %%     %              %%%%%%%%%%%%      ",
+"           %%%                                  %%%         %      %               %%%%%%%%%%       ",
+"           %%%%                    %%          %% %%        %    %%           %%%%% %%%%%   %%      ",
+"            %%%                     %        %%%%% %%      %% %%%              %% %%%%%%%%%%%%      ",
+"            %%%%                    %%       %  %%% %     %%%%                  %% %%%% % %%%%      ",
+"             %%%                     %%%     %% %%%%     %%%                     %%%%%%%%%%%%       ",
+"              %%%                      %%    %%%%%%%    %%%%            %%     %%% %%%%%%%%%        ",
+"               %%%             %%%%%%%%%%%%%% %%%%%%%%%%%%%%%%%%%%%%    %%%%%%%%%%%%%               ",
+"                %%%%          %%%%%%        %%%%%%%%%%%%%% %%%%%%%%      %%%%%%% %%%%%%%%%%         ",
+"                 %%%%              %%%%%%%%%%%%%%%%%%%%%%%%       %        %% %%%%%%%%%%%%          ",
+"                   %%%                                            %%%%  %%%%  %%%      %%%          ",
+"                    %%%%                                %%%%%%%    %%% %%%%  %%%%%%%%%%%            ",
+"                     %%%%%        %%               %%%%%%%%%%%%    %%% %%% %%%%%%%%%%%              ",
+"                       %%%%%%  %%     %%%%%%%%    %% %% %%%%%%%    %%%%%%%%%%%%%%  %%%             ",
+"                          %%%%%%%%%%%%%%%%%%      % %%%%%%%%%%%    %%%%%%%%%%%%%%%%%%               ",
+"                            %%%%%  %%%%%%        %%%%%%%%%     %  %%%%     %%%%                     ",
+"                              %%%%%%%%         %%%%%%%%%     %%%%%%%%%%%%%%%%%%                     ",
+"                              %%%% %%%%%%%%%%%%%%%%%%%%%%%%%%  %%%%%%%%%%%%%%%                      ",
+"                             %% % %     %% %%%%%%%%%%  %%%     %%%%%    %%%                         ",
+"                              %%%%%%  %%%%%   %%%%%%%%%%%%%%%%%%%%%%%%%%%                           ",
+"                               %%%%%%%  % %%       %%%%%%%%%   %%%%  %%                             ",
+"                                 %%%    %  %                    %% %%% %                            ",
+"                                  %%    %  %                     %%%%%%%%                           ",
+"                                   %%   %%%%                                                         "
+  ];
+
+  var H=A.length,W=Math.max.apply(null,A.map(function(r){return r.length}));
+  var D='!@#$%^&*()_+-=[]{}|;:,.<>?/~`abcdefghijklmnopqrstuvwxyz0123456789';
+  var S=[];
+  for(var y=0;y<H;y++){S[y]=[];for(var x=0;x<W;x++){S[y][x]={t:(A[y]||'')[x]||' ',c:' ',d:Math.random()*3500};}}
+
+  function fs(){return Math.floor((window.innerWidth*0.75)/W);}
+  function ap(){m.style.fontSize=fs()+'px';}
+  function rm(){var o='';for(var y=0;y<H;y++){for(var x=0;x<W;x++){o+=S[y][x].c;}o+='\n';}m.textContent=o;}
+
+  var T=5000,st=Date.now(),aid=null;
+  function am(){
+    var e=Date.now()-st,p=Math.min(1,e/T);
+    for(var y=0;y<H;y++){for(var x=0;x<W;x++){var ce=S[y][x];if(ce.t===' '){ce.c=' ';continue;}var le=Math.max(0,e-ce.d),lp=Math.min(1,le/1500);if(lp<=0){ce.c=' ';}else if(lp<1){if(Math.random()<0.5)ce.c=D[Math.floor(Math.random()*D.length)];}else{ce.c=ce.t;}}}
+    rm();
+    if(p<1){aid=requestAnimationFrame(am);}else{
+      for(var y=0;y<H;y++){for(var x=0;x<W;x++){S[y][x].c=S[y][x].t;}}rm();
+      setTimeout(function(){m.style.opacity='0';setTimeout(function(){m.style.display='none';t.style.display='block';t.style.opacity='1';bt();},800);},400);
+    }
+  }
+
+  function bt(){
+    var ua=navigator.userAgent,pl=navigator.platform||'unknown',lg=navigator.language||'en';
+    var rs=screen.width+'x'+screen.height+' @ '+window.devicePixelRatio+'x';
+    var cr=navigator.hardwareConcurrency||'?',mm=navigator.deviceMemory?navigator.deviceMemory+' GB':'?';
+    var tm=new Date().toLocaleString();
+    var dn=pl.indexOf('Win')>=0?'DESKTOP-XP7Q':pl.indexOf('Mac')>=0?'MacBook-Pro':pl.indexOf('Linux')>=0?'precision-7520':'device-01';
+    var fm='a4:b1:c9:3f:2e:1d',fi='10.22.14.9';
+    var total=2700000,rem=total,stm=Date.now(),tid=null;
+
+    function fmt(ms){var mm=Math.floor(ms/60000),ss=Math.floor((ms%60000)/1000),msc=ms%1000;return ('0'+mm).slice(-2)+':'+('0'+ss).slice(-2)+'.'+('00'+msc).slice(-3);}
+    function ut(){var el=document.getElementById('timer');if(el)el.textContent=fmt(rem);if(rem>0){tid=requestAnimationFrame(ut);rem=Math.max(0,total-(Date.now()-stm));}else{var el=document.getElementById('timer');if(el)el.textContent='00:00.000 expired';if(navigator.vibrate)navigator.vibrate([100,50,100]);}}
+
+    var rows=[
+      'allocated: <span id="timer">'+fmt(rem)+'</span> (45min)','',
+      'user:  '+dn,'mac:   '+fm,'ip:    '+fi,'',
+      'os:              '+pl,
+      'browser:         '+(ua.indexOf('Firefox')>=0?'firefox':ua.indexOf('Chrome')>=0?'chrome':ua.indexOf('Safari')>=0?'safari':'unknown'),
+      'lang:            '+lg,'res:             '+rs,'cpu:             '+cr+' cores','mem:             '+mm,
+      'net:             stable 1 teraflops','time:            '+tm,'',
+      'session:         trial 24h','auth:            none portal'
+    ].join('\n');
+
+    c.innerHTML=rows;
+    tid=requestAnimationFrame(ut);
+
+    var btn=document.createElement('button');
+    btn.textContent='[ accept ]';
+    btn.onclick=function(e){e.preventDefault();btn.textContent='[ granted ]';if(navigator.vibrate)navigator.vibrate(10);setTimeout(function(){btn.textContent='[ accept ]';},700);};
+    c.appendChild(btn);
+  }
+
+  ap();window.addEventListener('resize',function(){ap();rm();});
+  aid=requestAnimationFrame(am);
+})();
+</script>
+</body>
+</html>
