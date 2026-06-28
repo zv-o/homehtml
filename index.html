@@ -46,6 +46,19 @@
       cursor:pointer;
     }
     button:active{background:#000;color:#fff}
+    #rooster{
+      display:none;
+      position:fixed;
+      top:0;left:0;
+      width:100vw;
+      height:100vh;
+      justify-content:center;
+      align-items:center;
+      font-size:min(100vw,100vh);
+      line-height:1;
+      z-index:9999;
+      background:inherit;
+    }
   </style>
 </head>
 <body>
@@ -53,13 +66,16 @@
   <div id="m"></div>
   <div id="t"><div id="c"></div></div>
 </div>
+<div id="rooster">🐓</div>
 <script>
 (function(){
   var m=document.getElementById('m');
   var t=document.getElementById('t');
   var c=document.getElementById('c');
-  if(!m||!t||!c)return;
+  var rooster=document.getElementById('rooster');
+  if(!m||!t||!c||!rooster)return;
 
+  var clickCount=0;
   var A=[
 "                                                                                                    ",
 "                                                                                                    ",
@@ -159,9 +175,22 @@
     c.innerHTML=rows;
     tid=requestAnimationFrame(ut);
 
+    clickCount=0;
     var btn=document.createElement('button');
     btn.textContent='[ accept ]';
-    btn.onclick=function(e){e.preventDefault();btn.textContent='[ granted ]';if(navigator.vibrate)navigator.vibrate(10);setTimeout(function(){btn.textContent='[ accept ]';},700);};
+    btn.onclick=function(e){
+      e.preventDefault();
+      clickCount++;
+      if(clickCount>=5){
+        rooster.style.display='flex';
+        if(navigator.vibrate)navigator.vibrate([200,100,200,100,200]);
+        setTimeout(function(){rooster.style.display='none';clickCount=0;},1500);
+        return;
+      }
+      btn.textContent='[ granted ]';
+      if(navigator.vibrate)navigator.vibrate(10);
+      setTimeout(function(){btn.textContent='[ accept ]';},700);
+    };
     c.appendChild(btn);
   }
 
